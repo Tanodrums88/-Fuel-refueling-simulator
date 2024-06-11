@@ -6,6 +6,7 @@ type PropsHeader = {
   responsive: boolean;
   closeMenu: () => void;
 };
+
 function HeaderMenu({ responsive, closeMenu }: PropsHeader) {
   let content: React.ReactElement;
 
@@ -49,13 +50,31 @@ function HeaderMenu({ responsive, closeMenu }: PropsHeader) {
     content = (
       <>
         <MenuItem onClick={closeMenu}>
-          <Typography textAlign="center">Gas Station</Typography>
+          <Typography textAlign="center">
+            <Link
+              to={"/"}
+              className="linkMenu">
+              Gas Station
+            </Link>
+          </Typography>
         </MenuItem>
         <MenuItem onClick={closeMenu}>
-          <Typography textAlign="center">Refueling Register</Typography>
+          <Typography textAlign="center">
+            <Link
+              to={"/register"}
+              className="linkMenu">
+              Refueling Register
+            </Link>
+          </Typography>
         </MenuItem>
         <MenuItem onClick={closeMenu}>
-          <Typography textAlign="center">Storage Tank</Typography>
+          <Typography textAlign="center">
+            <Link
+              to={"/storage"}
+              className="linkMenu">
+              Storage Tank
+            </Link>
+          </Typography>
         </MenuItem>
       </>
     );

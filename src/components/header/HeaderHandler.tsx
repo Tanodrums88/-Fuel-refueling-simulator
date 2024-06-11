@@ -4,13 +4,12 @@ import {
   Box,
   Toolbar,
   IconButton,
-  Typography,
   Menu,
   Container,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import OilBarrelIcon from "@mui/icons-material/OilBarrel";
 import HeaderMenu from "./HeaderMenu";
+import Icon from "./Icon";
 
 function HeaderHandler() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -29,23 +28,7 @@ function HeaderHandler() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}>
-            <OilBarrelIcon />
-          </Typography>
-
+          <Icon responsive={false} />
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -79,23 +62,7 @@ function HeaderHandler() {
               />
             </Menu>
           </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}>
-            <OilBarrelIcon />
-          </Typography>
+          <Icon responsive={true} />
           <HeaderMenu
             responsive={true}
             closeMenu={handleCloseNavMenu}
