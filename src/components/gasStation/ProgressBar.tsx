@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRefuelingContext } from "../../store/RefuelingContext";
 
-import TimeToLeaveIcon from "@mui/icons-material/TimeToLeave";
-
-function CarPanel() {
+function ProgressBar() {
   const { refuelingInProgress, refuelings, stopRefueling } =
     useRefuelingContext();
 
@@ -37,22 +35,15 @@ function CarPanel() {
   }, [refuelingInProgress, refuelings.refuelingComplete]);
 
   return (
-    <div className="panelCar">
-      <TimeToLeaveIcon
-        className={
-          refuelingInProgress
-            ? "gasStationIconIsRunning"
-            : "gasStationIcon" && refuelings.refuelingComplete
-            ? "gasStationIconIsFull"
-            : "gasStationIcon"
-        }
-      />
-      <progress
-        max={refuelings.missingFuel}
-        value={l}
-      />
-    </div>
+    <>
+      <div className="containerProgressBar">
+        <progress
+          max={refuelings.missingFuel}
+          value={l}
+        />
+      </div>
+    </>
   );
 }
 
-export default CarPanel;
+export default ProgressBar;

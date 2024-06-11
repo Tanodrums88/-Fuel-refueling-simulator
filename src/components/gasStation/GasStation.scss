@@ -18,22 +18,22 @@
     }
   }
   .gasStationIcon {
-    color: orangered;
-    background: darkred;
+    color: red;
+    background: lightgray;
     width: 100%;
     font-size: 15vw;
     border-radius: 10px;
   }
   .gasStationIconIsRunning {
     color: orange;
-    background: orangered;
+    background: lightgray;
     width: 100%;
     font-size: 15vw;
     border-radius: 10px;
   }
   .gasStationIconIsFull {
     color: green;
-    background: greenyellow;
+    background: lightgray;
     width: 100%;
     font-size: 15vw;
     border-radius: 10px;
@@ -76,8 +76,6 @@
         justify-content: center;
         h1 {
           text-align: center;
-          // margin: 20px;
-          // padding: 10px 0;
           font-size: 1.9em;
         }
       }
@@ -101,12 +99,6 @@
       }
     }
   }
-
-  .panelCar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 }
 .btnAddData {
   font-size: 1.5em;
@@ -115,4 +107,60 @@
   padding: 10px;
   border-radius: 30px;
   width: 100%;
+}
+
+.fuelLabels {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+  .petrolLabel {
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 100%;
+    padding: 10px;
+  }
+  .dieselLabel {
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  .lpgLabel {
+    text-align: center;
+    border: 3px solid black;
+    padding: 5px;
+    height: 50px;
+    width: 50px;
+    transform: rotate(45deg);
+    h2 {
+      transform: rotate(-45deg);
+      margin-right: 5px;
+      margin-top: 5px;
+    }
+  }
+  .methaneLabel {
+    text-align: center;
+    border: 3px solid black;
+    padding: 5px;
+    height: 50px;
+    width: 50px;
+    transform: rotate(45deg);
+    h2 {
+      transform: rotate(-45deg);
+      margin-right: 25px;
+      margin-top: 15px;
+    }
+  }
+}
+
+.containerProgressBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
 }

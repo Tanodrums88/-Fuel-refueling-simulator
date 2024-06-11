@@ -2,7 +2,8 @@ import React from "react";
 import GasStationIcon from "./GasStationIcon.tsx";
 import Panel from "./Panel.tsx";
 import FuelSelection from "./FuelSelection.tsx";
-import CarPanel from "./CarPanel.tsx";
+import FuelLabel from "./FuelLabel.tsx";
+import ProgressBar from "./ProgressBar.tsx";
 import ButtonAddData from "./ButtonAddData.tsx";
 
 import { useRefuelingContext } from "../../store/RefuelingContext.tsx";
@@ -23,7 +24,8 @@ function GasStation() {
       <div className="fuelCalculatorBox">
         <div className="boxControls">
           <GasStationIcon />
-          <CarPanel />
+          <FuelLabel />
+          <ProgressBar />
         </div>
         <Panel />
       </div>
