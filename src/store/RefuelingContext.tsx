@@ -51,10 +51,10 @@ const initialState: RefuelingState = {
   },
   registerData: [],
   tankStatus: [
-    { type: "PETROL", fuelPresent: 10000 },
-    { type: "DIESEL", fuelPresent: 10000 },
-    { type: "LPG", fuelPresent: 10000 },
-    { type: "METHANE", fuelPresent: 10000 },
+    { type: "PETROL", fuelPresent: 5000 },
+    { type: "DIESEL", fuelPresent: 5000 },
+    { type: "LPG", fuelPresent: 5000 },
+    { type: "METHANE", fuelPresent: 5000 },
   ],
 };
 

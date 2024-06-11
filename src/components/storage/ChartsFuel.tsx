@@ -55,12 +55,15 @@ const ChartsFuel = () => {
     ],
   };
   return (
-    <Bar
-      data={data}
-      style={{ minHeight: "350px" }}
-      options={options}
-      updateMode={"show"}
-    />
+    <>
+      <h2>Real time fuel level graph</h2>
+      <Bar
+        data={data}
+        style={{ minHeight: "350px", maxHeight: "450px" }}
+        options={options}
+        updateMode={"show"}
+      />
+    </>
   );
 };
 export default ChartsFuel;

@@ -1,74 +1,107 @@
-import React from "react";
-import { Grid } from "@mui/material";
-import StorageTank from "./StorageTank";
+import * as React from "react";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
 import ChartsFuel from "./ChartsFuel";
-import { useRefuelingContext } from "../../store/RefuelingContext";
+import StorageDetails from "./StorageDetails";
 
-function StorageHandler() {
-  const { tankStatus } = useRefuelingContext();
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
+function CustomTabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
 
   return (
-    <>
-      <h1 style={{ textAlign: "center" }}>Fuel still present in the tanks</h1>
-      <Grid
-        container
-        rowSpacing={1}
-        columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid
-          textAlign={"center"}
-          item
-          md={6}
-          xs={12}>
-          <StorageTank fuels={tankStatus} />
-        </Grid>
-        <Grid
-          textAlign={"center"}
-          item
-          md={6}
-          xs={12}>
-          <ChartsFuel />
-        </Grid>
-      </Grid>
-    </>
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}>
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    </div>
   );
 }
 
-export default StorageHandler;
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
 
-/**
- * 
- * import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
+export default function StorageHandler() {
+  const [value, setValue] = React.useState(0);
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
 
-export default function RowAndColumnSpacing() {
   return (
-    <Box sx={{ width: '100%' }}>
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={6}>
-          <Item>1</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>2</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>3</Item>
-        </Grid>
-        <Grid item xs={6}>
-          <Item>4</Item>
-        </Grid>
-      </Grid>
+    <Box sx={{ width: "100%" }}>
+      <h1 style={{ textAlign: "center" }}>Fuel still present in the tanks</h1>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          variant="scrollable"
+          scrollButtons="auto"
+          allowScrollButtonsMobile={true}
+          aria-label="scrollable force tabs example">
+          <Tab
+            label="Chart"
+            {...a11yProps(0)}
+          />
+          <Tab
+            label="Petrol"
+            {...a11yProps(1)}
+          />
+          <Tab
+            label="Diesel"
+            {...a11yProps(2)}
+          />
+          <Tab
+            label="Lpg"
+            {...a11yProps(3)}
+          />
+          <Tab
+            label="Methane"
+            {...a11yProps(4)}
+          />
+        </Tabs>
+      </Box>
+      <CustomTabPanel
+        value={value}
+        index={0}>
+        <ChartsFuel />
+      </CustomTabPanel>
+
+      <CustomTabPanel
+        value={value}
+        index={1}>
+        <StorageDetails fuel="PETROL" />
+      </CustomTabPanel>
+
+      <CustomTabPanel
+        value={value}
+        index={2}>
+        <StorageDetails fuel="DIESEL" />
+      </CustomTabPanel>
+
+      <CustomTabPanel
+        value={value}
+        index={3}>
+        <StorageDetails fuel="LPG" />
+      </CustomTabPanel>
+
+      <CustomTabPanel
+        value={value}
+        index={4}>
+        <StorageDetails fuel="METHANE" />
+      </CustomTabPanel>
     </Box>
   );
 }
- */
