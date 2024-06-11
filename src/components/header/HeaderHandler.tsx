@@ -11,7 +11,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import HeaderMenu from "./HeaderMenu";
 import Icon from "./Icon";
 
+import { useRefuelingContext } from "../../store/RefuelingContext";
+
 function HeaderHandler() {
+  const { refuelingInProgress } = useRefuelingContext();
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -31,6 +35,7 @@ function HeaderHandler() {
           <Icon responsive={false} />
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
+              disabled={refuelingInProgress ? true : false}
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -57,14 +62,14 @@ function HeaderHandler() {
                 display: { xs: "block", md: "none" },
               }}>
               <HeaderMenu
-                responsive={false}
+                responsive={true}
                 closeMenu={handleCloseNavMenu}
               />
             </Menu>
           </Box>
           <Icon responsive={true} />
           <HeaderMenu
-            responsive={true}
+            responsive={false}
             closeMenu={handleCloseNavMenu}
           />
         </Toolbar>

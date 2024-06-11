@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Box, MenuItem, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useRefuelingContext } from "../../store/RefuelingContext";
 
 type PropsHeader = {
   responsive: boolean;
@@ -8,14 +9,17 @@ type PropsHeader = {
 };
 
 function HeaderMenu({ responsive, closeMenu }: PropsHeader) {
+  const { refuelingInProgress } = useRefuelingContext();
+
   let content: React.ReactElement;
 
-  if (responsive) {
+  if (!responsive) {
     content = (
       <>
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
           <Button
             onClick={closeMenu}
+            disabled={refuelingInProgress ? true : false}
             sx={{ my: 2, color: "white", display: "block" }}>
             <Link
               to={"/"}
@@ -25,6 +29,7 @@ function HeaderMenu({ responsive, closeMenu }: PropsHeader) {
           </Button>
           <Button
             onClick={closeMenu}
+            disabled={refuelingInProgress ? true : false}
             sx={{ my: 2, color: "white", display: "block" }}>
             <Link
               to={"/register"}
@@ -34,6 +39,7 @@ function HeaderMenu({ responsive, closeMenu }: PropsHeader) {
           </Button>
           <Button
             onClick={closeMenu}
+            disabled={refuelingInProgress ? true : false}
             sx={{ my: 2, color: "white", display: "block" }}>
             <Link
               to={"/storage"}
@@ -46,7 +52,7 @@ function HeaderMenu({ responsive, closeMenu }: PropsHeader) {
     );
   }
 
-  if (!responsive) {
+  if (responsive) {
     content = (
       <>
         <MenuItem onClick={closeMenu}>
