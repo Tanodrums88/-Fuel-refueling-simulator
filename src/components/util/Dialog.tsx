@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import CloseIcon from "@mui/icons-material/Close";
+import { useNavigate } from "react-router";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -22,9 +23,11 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 export default function DialogConfirm({ state }: { state: boolean }) {
   const [open, setOpen] = useState<boolean>(state);
+  const navigate = useNavigate();
 
   const handleClose = () => {
     setOpen(false);
+    navigate("/register");
   };
 
   return (
