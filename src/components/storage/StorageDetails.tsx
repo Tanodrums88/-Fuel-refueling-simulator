@@ -13,19 +13,14 @@ export default function StorageDetails({ fuel }: { fuel: string }) {
   const lastRefueling = registerFilter[registerFilter.length - 1];
   const averageCustomers = registerFilter.length;
 
-  function calcolaPerc(tot: number, num: number) {
+  function percentageCalculation(tot: number, num: number) {
     return ((num / tot) * 100).toFixed(0);
   }
 
-  const averageFuelUse = calcolaPerc(registerData.length, averageCustomers);
-
-  console.log(
-    `Numero di clienti che hanno utilizzato ${fuelType}: ${averageCustomers}`
+  const averageFuelUse = percentageCalculation(
+    registerData.length,
+    averageCustomers
   );
-
-  console.log(`Totale numero di clienti: ${registerData.length}`);
-
-  console.log(`Media di utilizzo ${fuelType}: ${averageFuelUse}`);
 
   return (
     <Card sx={{ textAlign: "center" }}>
