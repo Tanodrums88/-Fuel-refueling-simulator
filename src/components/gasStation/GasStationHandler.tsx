@@ -3,7 +3,6 @@ import GasStationIcon from "./GasStationIcon.tsx";
 import Panel from "./Panel.tsx";
 import FuelSelection from "./FuelSelection.tsx";
 import FuelLabel from "./FuelLabel.tsx";
-import ProgressBar from "./ProgressBar.tsx";
 import ButtonAddData from "./ButtonAddData.tsx";
 
 import { useRefuelingContext } from "../../store/RefuelingContext.tsx";
@@ -25,7 +24,6 @@ function GasStation() {
         <div className="boxControls">
           <GasStationIcon />
           <FuelLabel />
-          <ProgressBar />
         </div>
         <Panel />
       </div>

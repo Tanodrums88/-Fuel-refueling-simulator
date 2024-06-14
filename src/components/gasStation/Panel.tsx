@@ -32,22 +32,27 @@ function Panel() {
   refuelings.fuelInserted = +formattedLitres;
   refuelings.amount = +formattedPrice;
 
+  let panelClass: string = refuelingInProgress
+    ? "panelValue panelIsActive"
+    : "panelValue panelIsNotActive";
+
   return (
     <div className="panel">
       <div className="boxPanel1">
-        <div className="panelValue">
-          <h2>{formattedLitres}</h2>
-          <h2>{formattedPrice}</h2>
+        <div className={panelClass}>
+          <ul>
+            <li>{formattedPrice}</li>
+            <li>{formattedLitres}</li>
+            <li>{refuelings.price}</li>
+          </ul>
         </div>
         <div className="panelLegend">
-          <h1>Litres</h1>
-          <h1>Amount in euros</h1>
+          <ul>
+            <li>€</li>
+            <li>L</li>
+            <li>€/L</li>
+          </ul>
         </div>
-      </div>
-
-      <div className="panelPrice">
-        <h1>Euros per litre</h1>
-        <h2>{refuelings.price}</h2>
       </div>
     </div>
   );

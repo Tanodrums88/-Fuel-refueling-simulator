@@ -1,5 +1,6 @@
 import React from "react";
 import { useRefuelingContext } from "../../store/RefuelingContext";
+import ProgressBar from "./ProgressBar";
 
 function FuelLabel() {
   const { refuelings } = useRefuelingContext();
@@ -37,7 +38,12 @@ function FuelLabel() {
     );
   }
 
-  return <div className="fuelLabels">{fuelLabel}</div>;
+  return (
+    <div className="fuelLabels">
+      {fuelLabel}
+      <ProgressBar />
+    </div>
+  );
 }
 
 export default FuelLabel;
