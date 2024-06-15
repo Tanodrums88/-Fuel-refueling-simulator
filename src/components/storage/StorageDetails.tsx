@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
+import { Card, CardContent, Typography } from "@mui/material";
 import { useRefuelingContext } from "../../store/RefuelingContext";
 
 export default function StorageDetails({ fuel }: { fuel: string }) {
@@ -23,37 +23,36 @@ export default function StorageDetails({ fuel }: { fuel: string }) {
   );
 
   return (
-    <Card sx={{ textAlign: "center" }}>
-      <CardActionArea>
-        <CardContent>
-          <Typography
-            gutterBottom
-            variant="h3"
-            component="h3">
-            {fuelType}
-          </Typography>
-          <Typography
-            variant="h5"
-            component="h5"
-            gutterBottom>
-            There are currently {fuelPresent} liters of this type of fuel in the
-            tanks
-          </Typography>
-          <Typography
-            variant="h5"
-            component="h5"
-            gutterBottom>
-            Last refueling recorded:{" "}
-            {lastRefueling ? lastRefueling.date : "No refueling recorded"}
-          </Typography>
-          <Typography
-            variant="h5"
-            component="h5"
-            gutterBottom>
-            Average fuel use: {averageFuelUse}%
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+    <Card>
+      <CardContent>
+        <Typography
+          gutterBottom
+          variant="h3"
+          component="h3"
+          sx={{ textAlign: "center" }}>
+          {fuelType}
+        </Typography>
+        <Typography
+          variant="h5"
+          component="h5"
+          gutterBottom>
+          There are currently {fuelPresent} liters of this type of fuel in the
+          tanks
+        </Typography>
+        <Typography
+          variant="h5"
+          component="h5"
+          gutterBottom>
+          Last refueling recorded:{" "}
+          {lastRefueling ? lastRefueling.date : "No refueling recorded"}
+        </Typography>
+        <Typography
+          variant="h5"
+          component="h5"
+          gutterBottom>
+          Average fuel use: {averageFuelUse}%
+        </Typography>
+      </CardContent>
     </Card>
   );
 }
