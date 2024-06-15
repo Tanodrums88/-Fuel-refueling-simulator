@@ -45,7 +45,7 @@ export default function FuelSelection() {
   }, [FuelName, FuelPrice, FuelTank, FuelPresent, MissingFuel]);
 
   return (
-    <FormControl>
+    <FormControl className="fuelSelection">
       <FormLabel id="demo-row-radio-buttons-group-label">
         Select the fuel type
       </FormLabel>

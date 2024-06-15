@@ -21,6 +21,11 @@ function GasStationIcon() {
               : "gasStationIcon"
           }
         />
+        {refuelingInProgress
+          ? "Click to stop"
+          : "Click to start" && refuelings.refuelingComplete
+          ? "Refueling completed"
+          : "Click to start"}
       </button>
       <h2>{refuelings.name}</h2>
     </div>
