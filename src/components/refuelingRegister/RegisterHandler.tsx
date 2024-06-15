@@ -5,8 +5,8 @@ import TotalAmountRegister from "./TotalAmountRegister";
 function RegisterHandler() {
   return (
     <>
-      <RegisterGrid />
       <TotalAmountRegister />
+      <RegisterGrid />
     </>
   );
 }

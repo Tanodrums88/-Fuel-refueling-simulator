@@ -97,8 +97,28 @@ function TotalAmountRegister() {
 
   const styledTableRow = { background: "grey", color: "white" };
 
+  const totalRefueligMap = dataRegister.map((num) => num.numRefuelings);
+  var totalRefuelig = 0;
+  for (var i = 0; i < totalRefueligMap.length; i++) {
+    totalRefuelig += totalRefueligMap[i];
+  }
+
+  const totalLitersDispensedMap = dataRegister.map((num) => num.refuelingLitre);
+  var totalLitersDispensed = 0;
+  for (var i = 0; i < totalLitersDispensedMap.length; i++) {
+    totalLitersDispensed += totalLitersDispensedMap[i];
+  }
+
+  const totalAmountEuroMap = dataRegister.map((num) => num.amount);
+  var totalAmountEuro = 0;
+  for (var i = 0; i < totalAmountEuroMap.length; i++) {
+    totalAmountEuro += totalAmountEuroMap[i];
+  }
+
   return (
-    <Container maxWidth="md">
+    <Container
+      maxWidth="md"
+      sx={{ marginBottom: 5 }}>
       <TableContainer component={Paper}>
         <Table
           sx={{ minWidth: 650 }}
@@ -139,6 +159,21 @@ function TotalAmountRegister() {
                 <TableCell align="right">{data.amount} €</TableCell>
               </TableRow>
             ))}
+            <TableRow
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+              <TableCell
+                component="th"
+                scope="row">
+                TOTAL
+              </TableCell>
+              <TableCell align="right">{totalRefuelig}</TableCell>
+              <TableCell align="right">
+                {totalLitersDispensed.toFixed(2)} l
+              </TableCell>
+              <TableCell align="right">
+                {totalAmountEuro.toFixed(2)} €
+              </TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
