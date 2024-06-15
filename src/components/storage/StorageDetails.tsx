@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Card, CardContent, Typography } from "@mui/material";
 import { useRefuelingContext } from "../../store/RefuelingContext";
+import FuelLabel from "../gasStation/FuelLabel";
 
 export default function StorageDetails({ fuel }: { fuel: string }) {
   const { tankStatus, registerData } = useRefuelingContext();
@@ -22,8 +23,23 @@ export default function StorageDetails({ fuel }: { fuel: string }) {
     averageCustomers
   );
 
+  let cardClass: string;
+
+  if (fuel === "PETROL") {
+    cardClass = "cardPetrol";
+  }
+  if (fuel === "DIESEL") {
+    cardClass = "cardDiesel";
+  }
+  if (fuel === "LPG") {
+    cardClass = "cardLpg";
+  }
+  if (fuel === "METHANE") {
+    cardClass = "cardMethane";
+  }
+
   return (
-    <Card>
+    <Card className={cardClass}>
       <CardContent>
         <Typography
           gutterBottom
@@ -32,26 +48,36 @@ export default function StorageDetails({ fuel }: { fuel: string }) {
           sx={{ textAlign: "center" }}>
           {fuelType}
         </Typography>
-        <Typography
-          variant="h5"
-          component="h5"
-          gutterBottom>
-          There are currently {fuelPresent} liters of this type of fuel in the
-          tanks
-        </Typography>
-        <Typography
-          variant="h5"
-          component="h5"
-          gutterBottom>
-          Last refueling recorded:{" "}
-          {lastRefueling ? lastRefueling.date : "No refueling recorded"}
-        </Typography>
-        <Typography
-          variant="h5"
-          component="h5"
-          gutterBottom>
-          Average fuel use: {averageFuelUse}%
-        </Typography>
+        <div className="cardContent">
+          <div>
+            <Typography
+              variant="h5"
+              component="h5"
+              gutterBottom>
+              There are currently {fuelPresent} liters of this type of fuel in
+              the tanks
+            </Typography>
+            <Typography
+              variant="h5"
+              component="h5"
+              gutterBottom>
+              Last refueling recorded:{" "}
+              {lastRefueling ? lastRefueling.date : "No refueling recorded"}
+            </Typography>
+            <Typography
+              variant="h5"
+              component="h5"
+              gutterBottom>
+              Average fuel use: {averageFuelUse}%
+            </Typography>
+          </div>
+          <div style={{ width: "50%" }}>
+            <FuelLabel
+              onlyLabel={true}
+              name={fuel}
+            />
+          </div>
+        </div>
       </CardContent>
     </Card>
   );

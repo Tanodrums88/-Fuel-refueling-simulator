@@ -1,12 +1,10 @@
 import React from "react";
-import { useRefuelingContext } from "../../store/RefuelingContext";
 import ProgressBar from "./ProgressBar";
 
-function FuelLabel() {
-  const { refuelings } = useRefuelingContext();
+function FuelLabel({ name, onlyLabel }: { name: string; onlyLabel: boolean }) {
   let fuelLabel: React.ReactElement;
 
-  if (refuelings.name === "PETROL") {
+  if (name === "PETROL") {
     fuelLabel = (
       <div className="petrolLabel">
         <h2>E10</h2>
@@ -14,7 +12,7 @@ function FuelLabel() {
     );
   }
 
-  if (refuelings.name === "DIESEL") {
+  if (name === "DIESEL") {
     fuelLabel = (
       <div className="dieselLabel">
         <h2>B10</h2>
@@ -22,7 +20,7 @@ function FuelLabel() {
     );
   }
 
-  if (refuelings.name === "LPG") {
+  if (name === "LPG") {
     fuelLabel = (
       <div className="lpgLabel">
         <h2>LPG</h2>
@@ -30,7 +28,7 @@ function FuelLabel() {
     );
   }
 
-  if (refuelings.name === "METHANE") {
+  if (name === "METHANE") {
     fuelLabel = (
       <div className="methaneLabel">
         <h2>CNG</h2>
@@ -41,7 +39,7 @@ function FuelLabel() {
   return (
     <div className="fuelLabels">
       {fuelLabel}
-      <ProgressBar />
+      {onlyLabel ? "" : <ProgressBar />}
     </div>
   );
 }

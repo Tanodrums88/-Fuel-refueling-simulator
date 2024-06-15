@@ -46,62 +46,6 @@
         font-size: 9em;
       }
     }
-
-    .fuelLabels {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 20px auto;
-      h2 {
-        margin: 0;
-        padding: 0;
-      }
-      .petrolLabel {
-        text-align: center;
-        border: 3px solid #fff;
-        border-radius: 100%;
-        padding: 10px;
-      }
-      .dieselLabel {
-        text-align: center;
-        border: 3px solid #fff;
-        border-radius: 5px;
-        padding: 10px;
-      }
-      .lpgLabel {
-        text-align: center;
-        border: 3px solid #fff;
-        padding: 5px;
-        height: 50px;
-        width: 50px;
-        transform: rotate(45deg);
-        h2 {
-          transform: rotate(-45deg);
-          margin-right: 5px;
-          margin-top: 5px;
-        }
-      }
-      .methaneLabel {
-        text-align: center;
-        border: 3px solid #fff;
-        padding: 5px;
-        height: 50px;
-        width: 50px;
-        transform: rotate(45deg);
-        h2 {
-          transform: rotate(-45deg);
-          margin-right: 25px;
-          margin-top: 15px;
-        }
-      }
-      .containerProgressBar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 20px 0;
-      }
-    }
   }
 
   .panel {
@@ -169,5 +113,60 @@
         margin: auto 20px;
       }
     }
+  }
+}
+.fuelLabels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+  .petrolLabel {
+    text-align: center;
+    border: 3px solid #fff;
+    border-radius: 100%;
+    padding: 10px;
+  }
+  .dieselLabel {
+    text-align: center;
+    border: 3px solid #fff;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  .lpgLabel {
+    text-align: center;
+    border: 3px solid #fff;
+    padding: 5px;
+    height: 50px;
+    width: 50px;
+    transform: rotate(45deg);
+    h2 {
+      transform: rotate(-45deg);
+      margin-right: 5px;
+      margin-top: 5px;
+    }
+  }
+  .methaneLabel {
+    text-align: center;
+    border: 3px solid #fff;
+    padding: 5px;
+    height: 50px;
+    width: 50px;
+    transform: rotate(45deg);
+    h2 {
+      transform: rotate(-45deg);
+      margin-right: 25px;
+      margin-top: 15px;
+    }
+  }
+  .containerProgressBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
   }
 }

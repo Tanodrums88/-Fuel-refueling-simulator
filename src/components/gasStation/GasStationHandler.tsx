@@ -23,7 +23,10 @@ function GasStation() {
       <div className="fuelCalculatorBox">
         <div className="boxControls">
           <GasStationIcon />
-          <FuelLabel />
+          <FuelLabel
+            onlyLabel={false}
+            name={refuelings.name}
+          />
         </div>
         <Panel />
       </div>
