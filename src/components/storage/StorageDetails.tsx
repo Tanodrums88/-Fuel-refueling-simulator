@@ -14,14 +14,20 @@ export default function StorageDetails({ fuel }: { fuel: string }) {
   const lastRefueling = registerFilter[registerFilter.length - 1];
   const averageCustomers = registerFilter.length;
 
-  function percentageCalculation(tot: number, num: number) {
-    return ((num / tot) * 100).toFixed(0);
+  function percentageCalculation(tot: number, num: number): number {
+    let result = (num / tot) * 100;
+    if (Number.isNaN(result)) {
+      return 0;
+    }
+    return result;
   }
 
   const averageFuelUse = percentageCalculation(
     registerData.length,
     averageCustomers
   );
+
+  console.log(registerData.length, averageCustomers, averageFuelUse);
 
   let cardClass: string;
 
@@ -68,7 +74,7 @@ export default function StorageDetails({ fuel }: { fuel: string }) {
               variant="h5"
               component="h5"
               gutterBottom>
-              Average fuel use: {averageFuelUse}%
+              Average fuel use: {averageFuelUse.toFixed(0)}%
             </Typography>
           </div>
           <div style={{ width: "50%" }}>
