@@ -27,8 +27,6 @@ export default function StorageDetails({ fuel }: { fuel: string }) {
     averageCustomers
   );
 
-  console.log(registerData.length, averageCustomers, averageFuelUse);
-
   let cardClass: string;
 
   if (fuel === "PETROL") {
