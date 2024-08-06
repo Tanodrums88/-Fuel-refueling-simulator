@@ -1,0 +1,33 @@
+.cardContent {
+  display: flex;
+  align-items: center;
+}
+
+.css-bhp9pd-MuiPaper-root-MuiCard-root.cardPetrol {
+  background: rgb(60, 203, 24);
+  color: #fff;
+}
+
+.css-bhp9pd-MuiPaper-root-MuiCard-root.cardDiesel {
+  background: rgb(254, 245, 0);
+  color: #000;
+  .dieselLabel {
+    border: 3px solid #000;
+  }
+}
+
+.css-bhp9pd-MuiPaper-root-MuiCard-root.cardLpg {
+  background: rgb(0, 128, 191);
+  color: #fff;
+}
+
+.css-bhp9pd-MuiPaper-root-MuiCard-root.cardMethane {
+  background: rgb(0, 128, 191);
+  color: #fff;
+}
+
+@media screen and (min-width: 510px) {
+  .css-heg063-MuiTabs-flexContainer {
+    justify-content: center;
+  }
+}
