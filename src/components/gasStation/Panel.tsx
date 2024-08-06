@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useRefuelingContext } from "../../store/RefuelingContext";
 
 function Panel() {
-  const { refuelings, refuelingInProgress } = useRefuelingContext();
+  const { refuelings, refuelingInProgress, selectorIsActive } =
+    useRefuelingContext();
 
   const [l, setL] = useState<number>(0);
   const [intervalId, setIntervalId] = useState<number>(0);
@@ -36,12 +37,21 @@ function Panel() {
     ? "panelValue panelIsActive"
     : "panelValue panelIsNotActive";
 
+  let priceContent: any = selectorIsActive.amountSelected;
+
+  if (refuelingInProgress) {
+    priceContent = formattedPrice;
+  }
+  if (!refuelingInProgress && l > 0) {
+    priceContent = formattedPrice;
+  }
+
   return (
     <div className="panel">
       <div className="boxPanel1">
         <div className={panelClass}>
           <ul>
-            <li>{formattedPrice}</li>
+            <li>{priceContent}</li>
             <li>{formattedLitres}</li>
             <li>{refuelings.price}</li>
           </ul>

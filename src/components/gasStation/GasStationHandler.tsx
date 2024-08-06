@@ -4,8 +4,9 @@ import Panel from "./Panel.tsx";
 import FuelSelection from "./FuelSelection.tsx";
 import FuelLabel from "./FuelLabel.tsx";
 import ButtonAddData from "./ButtonAddData.tsx";
+import QuantitySelectorButtonsHandler from "./QuantitySelectorButtonsHandler.tsx"
 
-import { useRefuelingContext } from "../../store/RefuelingContext.tsx";
+import { useRefuelingContext } from "../../store/RefuelingContext.tsx";;
 
 function GasStation() {
   const { refuelings } = useRefuelingContext();
@@ -29,6 +30,7 @@ function GasStation() {
           />
         </div>
         <Panel />
+        <QuantitySelectorButtonsHandler />
       </div>
       {buttonContent}
     </>

@@ -14,16 +14,14 @@ export type RefuelingData = {
   date: string;
 };
 
+export type SelectorActive = {
+  active: boolean;
+  amountSelected: number;
+};
+
 export type TankStatus = {
   type: "PETROL" | "DIESEL" | "LPG" | "METHANE" | string;
   fuelPresent: number;
-};
-
-type RefuelingState = {
-  refuelingInProgress: boolean;
-  refuelings: FuelSelection;
-  registerData: RefuelingData[];
-  tankStatus: TankStatus[];
 };
 
 export type FuelSelection = {
@@ -35,6 +33,14 @@ export type FuelSelection = {
   fuelInserted: number;
   refuelingComplete: boolean;
   amount: number;
+};
+
+type RefuelingState = {
+  refuelingInProgress: boolean;
+  selectorIsActive: SelectorActive;
+  refuelings: FuelSelection;
+  registerData: RefuelingData[];
+  tankStatus: TankStatus[];
 };
 
 const initialState: RefuelingState = {
@@ -49,6 +55,10 @@ const initialState: RefuelingState = {
     refuelingComplete: false,
     amount: 0,
   },
+  selectorIsActive: {
+    active: false,
+    amountSelected: 0,
+  },
   registerData: [],
   tankStatus: [
     { type: "PETROL", fuelPresent: 5000 },
@@ -61,6 +71,7 @@ const initialState: RefuelingState = {
 type RefuelingContextValue = RefuelingState & {
   startRefueling: () => void;
   stopRefueling: () => void;
+  selectorActive: (selectorState: SelectorActive) => void;
   refuelingCount: (refuelingsData: FuelSelection) => void;
   addRegister: (data: RefuelingData) => void;
 };
@@ -88,6 +99,11 @@ type StopRefuelingAction = {
   type: "STOP_REFUELING";
 };
 
+type SelectorActiveAction = {
+  type: "SELECTOR_ACTIVATION";
+  payload: SelectorActive;
+};
+
 type RefuelingCountAction = {
   type: "COUNT_REFUELING";
   payload: FuelSelection;
@@ -101,6 +117,7 @@ type AddRegisterAction = {
 type Action =
   | StartRefuelingAction
   | StopRefuelingAction
+  | SelectorActiveAction
   | RefuelingCountAction
   | AddRegisterAction;
 
@@ -118,6 +135,15 @@ function refuelingReducer(
     return {
       ...state,
       refuelingInProgress: false,
+    };
+  }
+  if (action.type === "SELECTOR_ACTIVATION") {
+    return {
+      ...state,
+      selectorIsActive: {
+        active: action.payload.active,
+        amountSelected: action.payload.amountSelected,
+      },
     };
   }
   if (action.type === "COUNT_REFUELING") {
@@ -159,6 +185,7 @@ function RefuelingContextProvider({ children }: RefuelingContextProviderProps) {
   const [refuelingState, dispatch] = useReducer(refuelingReducer, initialState);
   const ctx: RefuelingContextValue = {
     refuelings: refuelingState.refuelings,
+    selectorIsActive: refuelingState.selectorIsActive,
     refuelingInProgress: refuelingState.refuelingInProgress,
     registerData: refuelingState.registerData,
     tankStatus: refuelingState.tankStatus,
@@ -167,6 +194,9 @@ function RefuelingContextProvider({ children }: RefuelingContextProviderProps) {
     },
     stopRefueling() {
       dispatch({ type: "STOP_REFUELING" });
+    },
+    selectorActive(selectorState) {
+      dispatch({ type: "SELECTOR_ACTIVATION", payload: selectorState });
     },
     refuelingCount(refuelingsData) {
       dispatch({ type: "COUNT_REFUELING", payload: refuelingsData });
