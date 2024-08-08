@@ -1,23 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Selector from "./Selector";
 import { useRefuelingContext } from "../../store/RefuelingContext";
 
 function QuantitySelectorButtonsHandler() {
   const { selectorActive } = useRefuelingContext();
 
+  const [values, setValues] = useState<number[]>([]);
+
   function valueSelectHandler(value: number) {
-    if (value > 0) {
+    setValues([...values, value]);
+  }
+
+  useEffect(() => {
+    let sum = 0;
+
+    for (var i = 0; i < values.length; i++) {
+      sum = sum + values[i];
+    }
+
+    if (sum > 0) {
       selectorActive({
         active: true,
-        amountSelected: value,
+        amountSelected: sum,
       });
-    } else {
+    }
+    if (sum === 0) {
       selectorActive({
         active: false,
         amountSelected: 0,
       });
     }
-  }
+    let lastIndex = values.length;
+    let lastValue = values[lastIndex - 1];
+    
+    if (lastValue === 0) {
+      selectorActive({
+        active: false,
+        amountSelected: 0,
+      });
+      setValues([])
+    }
+  }, [values]);
 
   return (
     <div className="quantitySelctorButtonsContainer">

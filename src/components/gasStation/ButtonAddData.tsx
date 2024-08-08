@@ -4,7 +4,8 @@ import usePlateNumberRandom from "../../hookCustom/usePlateNumberRandom";
 import DialogConfirm from "../util/Dialog";
 
 function ButtonAddData() {
-  const { addRegister, refuelings, stopRefueling } = useRefuelingContext();
+  const { addRegister, refuelings, stopRefueling, selectorActive } =
+    useRefuelingContext();
   const [dialogIsOpen, setDialogIsOpen] = useState<boolean>(false);
 
   let plate = usePlateNumberRandom();
@@ -21,14 +22,15 @@ function ButtonAddData() {
     });
     stopRefueling();
     setDialogIsOpen(true);
+    selectorActive({
+      active: false,
+      amountSelected: 0,
+    });
   }
 
   return (
     <>
-      <button
-        type="button"
-        className="btnAddData"
-        onClick={handleSaveData}>
+      <button type="button" className="btnAddData" onClick={handleSaveData}>
         Pay
       </button>
       {dialogIsOpen && <DialogConfirm state={dialogIsOpen} />}

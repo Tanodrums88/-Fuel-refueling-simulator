@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useRef } from "react";
 
 type SelectorProps = {
   children: ReactNode;
@@ -7,11 +7,11 @@ type SelectorProps = {
 };
 
 function Selector({ children, onSelectValue, valueSelected }: SelectorProps) {
-  const [value, setValue] = useState<number>(0);
+ const valueRef = useRef<number>(0)
 
   function valueSelect() {
-    setValue(valueSelected);
-    onSelectValue(value);
+    valueRef.current = valueSelected    
+    onSelectValue(valueRef.current);
   }
 
   return (
