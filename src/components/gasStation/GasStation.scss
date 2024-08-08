@@ -1,5 +1,5 @@
 @import url("https://fonts.cdnfonts.com/css/digital-7-mono");
-.fuelSelection {
+.css-1nrlq1o-MuiFormControl-root  {
   margin: auto 10vw;
   width: 100%;
 }
@@ -182,15 +182,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 10px;
   .selectorButton {
-    height: 50px;
-    width: 50px;
+    height: 3vw;
+    width: 3vw;
     border: 5px solid #fff;
-    border-radius: 25px;
+    border-radius: 1.5vw;
     margin: auto 10px;
   }
   .selectorText {
     color: #fff;
     font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 788px) {
+  .quantitySelctorButtonsContainer {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
