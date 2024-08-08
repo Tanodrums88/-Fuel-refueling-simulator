@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRefuelingContext } from "../../store/RefuelingContext";
 
 function ProgressBar() {
-  const { refuelingInProgress, refuelings, stopRefueling } =
+  const { refuelingInProgress, refuelings, stopRefueling, selectorIsActive } =
     useRefuelingContext();
 
   const [l, setL] = useState<number>(0);
@@ -11,6 +11,12 @@ function ProgressBar() {
   let missingFuel = refuelings.missingFuel;
 
   if (l >= missingFuel) {
+    refuelings.refuelingComplete = true;
+  }
+
+  let amountComplete = selectorIsActive.amountSelected;
+
+  if (refuelings.amount >= amountComplete && refuelingInProgress && selectorIsActive.active) {
     refuelings.refuelingComplete = true;
   }
 
@@ -37,10 +43,7 @@ function ProgressBar() {
   return (
     <>
       <div className="containerProgressBar">
-        <progress
-          max={refuelings.missingFuel}
-          value={l}
-        />
+        <progress max={refuelings.missingFuel} value={l} />
       </div>
     </>
   );
