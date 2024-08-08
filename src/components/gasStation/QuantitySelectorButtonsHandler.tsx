@@ -30,15 +30,23 @@ function QuantitySelectorButtonsHandler() {
         amountSelected: 0,
       });
     }
+
+    if (sum >= 100) {
+      sum = 100;
+      selectorActive({
+        active: true,
+        amountSelected: sum
+      });
+    }
     let lastIndex = values.length;
     let lastValue = values[lastIndex - 1];
-    
+
     if (lastValue === 0) {
       selectorActive({
         active: false,
         amountSelected: 0,
       });
-      setValues([])
+      setValues([]);
     }
   }, [values]);
 
